@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="container">
+    <form method="post" action="" class="col-sm-4 position-absolute top-50 start-50 translate-middle">
+        {% csrf_token %}
+        {{ form }}
+        <p></p>
+        <button class="btn btn-success mt-2" type="submit" >Добавить профиль</button>
+        <a href="{% url 'list' %}" class="btn btn-primary mt-2">Список</a>
+    </form>
+</div>
+{% endblock %}

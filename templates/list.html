@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="container">
+    <form method="get" action="" class="col-sm-4 position-absolute top-50 start-50 translate-middle">
+        {% csrf_token %}
+        <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Profile name</th>
+              <th scope="col">Followers</th>
+              <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for profile in object_list %}
+                <tr>
+                  <th scope="row">{{ profile.pk }}</th>
+                  <td>{{ profile.name }}</td>
+                  <td>{{ profile.download }}</td>
+                  <td><a type="button" class="btn btn-danger" href="{% url 'delete' profile.pk %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'save' %}" class="btn btn-success mt-2">Собрать таблицу</a>
+        <a href="{% url 'home' %}" class="btn btn-primary mt-2">Добавить профиль</a>
+    </form>
+</div>
+
+
+{% endblock %}
