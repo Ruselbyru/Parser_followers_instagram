@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-=d@p5d+aa0-y-!lo$ivuv3*rv+3*5hjc#u)g3!-uxx&iq8!k&j
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -75,10 +75,21 @@ WSGI_APPLICATION = 'instaproject.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.sqlite3',
+#         'NAME': BASE_DIR / 'db.sqlite3',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'd7idc8hbuoi547',
+        'USER': 'qrjjssbfhddfii',
+        'PASSWORD': '62330ba1739a5393b64e179a57b82fb1abfed8da9733358af411c7aa664ccf34',
+        'HOST': 'ec2-52-19-164-214.eu-west-1.compute.amazonaws.com',
+        'PORT': '5432',
     }
 }
 

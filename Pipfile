@@ -8,6 +8,9 @@ django = "*"
 instaloader = "*"
 pandas = "*"
 openpyxl = "*"
+gunicorn = "*"
+psycopg2 = "*"
+whitenoise = "*"
 
 [dev-packages]
 
