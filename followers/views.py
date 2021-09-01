@@ -1,11 +1,13 @@
 from django.shortcuts import render,redirect
-from django.views.generic import CreateView , ListView,UpdateView
+from django.views.generic import CreateView , ListView
 from .models import Profile, Followers
 from .forms import DownloadUpdateForm
-from django.db.models.signals import post_save
 
 
+
+import pandas as pd
 import instaloader
+import openpyxl
 
 # Create your views here.
 
@@ -50,16 +52,24 @@ def save_followers(request):
     login = 'axyanon245'
     password = '8215mi4ru'
     L.login(login, password)
-    prof_list=[]
-    for prof in Profile.objects.filter(download=True):
-        prof_list.append(prof.name)
 
-    for name in prof_list:
-        profile = instaloader.Profile.from_username(L.context, name)
+    for prof in Profile.objects.filter(download=True):
+        profile = instaloader.Profile.from_username(L.context, prof.name)
         for followee in profile.get_followers():
-            profile_model= Profile.objects.get(name=name)
+            profile_model= Profile.objects.get(name=prof.name)
             profile_model.followers_set.create(followers=followee.username)
 
     return redirect('/')
 
-# post_save.connect(save_profile,sender=Profile)
+def download_table(request):
+
+    data=pd.DataFrame()
+    for profile in Profile.objects.filter(download=True):
+        prof = Profile.objects.get(name = profile.name)
+        followers_list = []
+        for followee in prof.followers_set.all():
+            followers_list.append(followee.followers)
+        result = pd.Series(followers_list,name=profile.name)
+        data = pd.concat([data,result], axis=1)
+    data.to_excel('exel.xlsx')
+    return redirect('/')

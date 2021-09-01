@@ -15,7 +15,7 @@ class Profile (models.Model):
 
 
 class Followers (models.Model):
-    profile = models.ManyToManyField(Profile)
+    profile = models.ForeignKey(Profile, on_delete=models.CASCADE, null=False,default=None)
     followers = models.CharField(max_length=100)
 
     def __str__(self):
