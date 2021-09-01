@@ -5,7 +5,7 @@ from django.urls import reverse
 
 class Profile (models.Model):
     name = models.CharField(max_length=100 , verbose_name='Имя профиля')
-    download = models.BooleanField(null=False, default=True)
+    download = models.BooleanField(null=False, default=False)
 
     def __str__(self):
         return self.name
