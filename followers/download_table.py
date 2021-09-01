@@ -14,6 +14,6 @@ def download_table(request):
             followers_list.append(followee.followers)
         result = pd.Series(followers_list,name=profile.name)
         data = pd.concat([data,result], axis=1)
-    # data.to_excel('exel.xlsx')
-    print(data)
+    data.to_excel('followers.xlsx')
+    # print(data)
     return redirect('/list')
