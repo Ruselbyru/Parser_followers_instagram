@@ -45,19 +45,19 @@ def delete_profile (request, id):
 
 
 def save_followers(request):
-    profile_list = Profile.objects.filter(download=True)
-    for profile_true in profile_list:
-        L = instaloader.Instaloader()
+    L = instaloader.Instaloader()
 
-        login = 'axyanon245'
-        password = '8215mi4ru'
+    login = 'axyanon245'
+    password = '8215mi4ru'
+    L.login(login, password)
+    prof_list=[]
+    for prof in Profile.objects.filter(download=True):
+        prof_list.append(prof.name)
 
-        L.login(login, password)
-
-
-        profile = instaloader.Profile.from_username(L.context, profile_true)
+    for name in prof_list:
+        profile = instaloader.Profile.from_username(L.context, name)
         for followee in profile.get_followers():
-            profile_model= Profile.objects.get(name=profile_true)
+            profile_model= Profile.objects.get(name=name)
             profile_model.followers_set.create(followers=followee.username)
 
     return redirect('/')
