@@ -1,6 +1,7 @@
 from .models import Profile,Files
 from django.shortcuts import redirect
 import pandas as pd
+from instaproject import settings
 import openpyxl
 
 
@@ -15,7 +16,7 @@ def download_table(request):
             followers_list.append(followee.followers)
         result = pd.Series(followers_list,name=profile.name)
         data = pd.concat([data,result], axis=1)
-    data.to_excel(f'media_cdn/media/{table_name}.xlsx')
+    data.to_excel(settings.BASE_DIR.joinpath(f'media_cdn/media/{table_name}.xlsx'))
     f= Files(adminupload=f'media/{table_name}.xlsx', title = f'{table_name}')
     f.save()
 
