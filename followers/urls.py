@@ -8,4 +8,5 @@ urlpatterns = [
     path('delete/<int:id>', views.delete_profile,name= 'delete'),
     path('save',save_followers.save_followers,name='save'),
     path('download', download_table.download_table,name= 'download'),
+    path('load', views.home),
 ]

@@ -20,3 +20,11 @@ class Followers (models.Model):
 
     def __str__(self):
         return self.followers
+
+
+class Files(models.Model):
+    adminupload = models.FileField(upload_to='media')
+    title = models.CharField(max_length=50)
+
+    def __str__(self):
+        return self.title

@@ -1,7 +1,11 @@
+import os.path
+
 from django.shortcuts import render,redirect
 from django.views.generic import CreateView , ListView
-from .models import Profile
-
+from .models import Profile, Files
+from django.http import HttpResponse,Http404
+import os
+from instaproject import settings
 
 
 
@@ -29,3 +33,17 @@ def delete_profile (request, id):
     return redirect('/list')
 
 
+def home(request):
+    context= {'file': Files.objects.all()}
+    return render(request, 'download.html', context=context)
+
+
+def download (request, path):
+    file_path = os.path.join(settings.MEDIA_ROOT, path)
+    if os.path.exists(file_path):
+        with open (file_path, 'rb') as fh:
+            responce= HttpResponse(fh.read(), content_type='applications/adminupload')
+            responce['Content-Disposition']='inline;filename='+os.path.basename(file_path)
+            return responce
+
+    raise Http404
