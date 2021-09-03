@@ -2,7 +2,7 @@
 {% block content %}
 
 <div class="container">
-    <form method="get" action="" class="col-sm-4 position-absolute top-50 start-50 translate-middle">
+    <form method="get" action="" class="col-sm-5 position-absolute top-50 start-50 translate-middle">
         {% csrf_token %}
         <table class="table">
             <thead>
@@ -26,7 +26,7 @@
         </table>
         <a href="{% url 'home' %}" class="btn btn-primary mt-2">Добавить профиль</a>
         <a href="{% url 'save' %}" class="btn btn-warning mt-2">Собрать подписчиков</a>
-        <a href="{% url 'download' %}" class="btn btn-success mt-2">Скачать таблицу</a>
+        <a href="{% url 'download' %}" class="btn btn-success mt-2">Сконфигурировать таблицу</a>
     </form>
 </div>
 

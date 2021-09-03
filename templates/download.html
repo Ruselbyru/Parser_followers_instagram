@@ -1,7 +1,32 @@
 {% extends 'base.html' %}
 {% block content %}
-{% for post in file %}
-<h2>{{ post.title }}</h2>
-<a href="{{post.adminupload.url}}" download="{{ post.adminupload.url }}">Download</a>
-{% endfor %}
+
+
+
+<div class="container">
+    <form method="get" action="" class="col-sm-5 position-absolute top-50 start-50 translate-middle">
+        {% csrf_token %}
+        <table class="table">
+            <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Title table</th>
+              <th scope="col">Download</th>
+              <th scope="col">Delete</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for post in file %}
+                <tr>
+                  <th scope="row">{{ post.pk }}</th>
+                  <td>{{ post.title }}</td>
+                  <td><a class ="btn btn-success" href="{{post.adminupload.url}}" download="{{ post.adminupload.url }}">Download</a></td>
+                  <td><a type="button" class="btn btn-danger" href="{% url 'deletetable' post.pk %}">Delete</a></td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+        <a href="{% url 'list' %}" class="btn btn-primary mt-2">К списку профилей</a>
+    </form>
+</div>
 {% endblock %}
