@@ -54,6 +54,6 @@ def download (request, path):
 #delete table
 def delete_table (request, id):
     table = Files.objects.get(id=id)
-    os.remove(settings.BASE_DIR.joinpath(f'media_cdn\{table.adminupload}'))
+    os.remove(settings.BASE_DIR.joinpath(f'media_cdn/{table.adminupload}'))
     table.delete()
     return redirect('/load')
