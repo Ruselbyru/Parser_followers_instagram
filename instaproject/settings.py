@@ -23,7 +23,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-=d@p5d+aa0-y-!lo$ivuv3*rv+3*5hjc#u)g3!-uxx&iq8!k&j'
+SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -90,11 +90,11 @@ DATABASES = {
 # DATABASES = {
 #     'default': {
 #         'ENGINE': 'django.db.backends.postgresql',
-#         'NAME': 'd7idc8hbuoi547',
-#         'USER': 'qrjjssbfhddfii',
-#         'PASSWORD': '62330ba1739a5393b64e179a57b82fb1abfed8da9733358af411c7aa664ccf34',
-#         'HOST': 'ec2-52-19-164-214.eu-west-1.compute.amazonaws.com',
-#         'PORT': '5432',
+#         'NAME': os.getenv('NAME'),
+#         'USER': os.getenv('USER'),
+#         'PASSWORD': os.getenv('PASSWORD'),
+#         'HOST': os.getenv('HOST'),
+#         'PORT': os.getenv('PORT'),
 #     }
 # }
 
@@ -150,5 +150,5 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # INSTALOADER
 
-INSTA_LOGIN = 'axyanon245'
-INSTA_PASSWORD = '8215mi4ru'
+INSTA_LOGIN = os.getenv('INSTA_LOGIN')
+INSTA_PASSWORD = os.getenv('INSTA_PASSWORD')

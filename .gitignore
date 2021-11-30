@@ -1,1 +1,8 @@
+.git
+.idea
+__pycache__
+/media_cdn
+/staticfiles
+.env
+Procfile
 db.sqlite3
